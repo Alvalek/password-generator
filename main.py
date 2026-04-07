@@ -12,7 +12,7 @@ def generate_password():
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number!")
     if length_entry.get() == placeholder_text:
-    messagebox.showerror("Error", "Please enter a valid number!")
+        messagebox.showerror("Error", "Please enter a valid number!")
     return
 
 def copy_to_clipboard():
