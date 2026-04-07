@@ -16,12 +16,14 @@ Tkinter (usually included with Python)
 
 # Running the Project
 Clone the repository:
+```
 $ git clone https://github.com/Alvalek/password-generator 
 $ cd password-generator 
-
+```
 Run the application:
+```
 $ python main.py 
-
+```
 # How It Works
 The user inputs the desired password length
 The program generates a random password using: 
