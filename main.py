@@ -11,6 +11,9 @@ def generate_password():
         result_var.set(password)
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number!")
+    if length_entry.get() == placeholder_text:
+    messagebox.showerror("Error", "Please enter a valid number!")
+    return
 
 def copy_to_clipboard():
     password = result_var.get()
@@ -30,10 +33,25 @@ window.geometry("320x220")
 title_label = tk.Label(window, text="Password Generator", font=("Arial", 14))
 title_label.pack(pady=10)
 
+placeholder_text = "Enter password length..."
+
+def on_entry_click(event):
+    if length_entry.get() == placeholder_text:
+        length_entry.delete(0, tk.END)
+        length_entry.config(fg="black", font=("Arial", 10, "normal"))
+
+def on_focus_out(event):
+    if length_entry.get() == "":
+        length_entry.insert(0, placeholder_text)
+        length_entry.config(fg="gray", font=("Arial", 10, "italic"))
+
 # Length input
-length_entry = tk.Entry(window)
+length_entry = tk.Entry(window, fg="gray", font=("Arial", 10, "italic"))
 length_entry.pack()
-length_entry.insert(0, "12")
+length_entry.insert(0, placeholder_text)
+
+length_entry.bind("<FocusIn>", on_entry_click)
+length_entry.bind("<FocusOut>", on_focus_out)
 
 # Generate button
 generate_button = tk.Button(window, text="Generate Password", command=generate_password)
