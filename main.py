@@ -1,6 +1,7 @@
 import random
 import string
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
 
 
@@ -38,6 +39,18 @@ def generate_password():
         strength_label.config(fg="orange")
     else:
         strength_label.config(fg="green")
+        
+    if strength == "Weak":
+        strength_label.config(fg="red")
+    elif strength == "Medium":
+        strength_label.config(fg="orange")
+    else:
+        strength_label.config(fg="green")
+        
+    strength, value = check_strength(password, length)
+    
+    strength_var.set(f"Strength: {strength}")
+    strength_bar['value'] = value
 
 def copy_to_clipboard():
     password = result_var.get()
@@ -48,6 +61,8 @@ def copy_to_clipboard():
     else:
         messagebox.showwarning("Warning", "No password to copy!")
 
+strength_bar = ttk.Progressbar(window, length=250, mode='determinate')
+strength_bar.pack(pady=5)
 def check_strength(password, length):
     score = 0
 
@@ -61,17 +76,17 @@ def check_strength(password, length):
         score += 1
 
     if score <= 1:
-        return "Weak"
+        return "Weak", 25
     elif score <= 3:
-        return "Medium"
+        return "Medium", 60
     else:
-        return "Strong"
+        return "Strong", 100
 
 # Main window
 window = tk.Tk()
 window.title("Password Generator")
-window.geometry("420x380")
-window.minsize(400, 350)
+window.geometry("420x420")
+window.minsize(420, 380)
 
 
 include_numbers = tk.BooleanVar(value=True)
