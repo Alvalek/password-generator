@@ -1,5 +1,5 @@
 # Password Generator (GUI)
-Made by Alvalek, 2026.
+Made by Alvalek, 2026.  
 A simple and user-friendly password generator built with Python and Tkinter.
 This project allows users to generate secure random passwords with a graphical interface and copy them instantly to the clipboard.
 
@@ -27,7 +27,7 @@ $ python main.py
 ```
 # How It Works
 The user inputs the desired password length<br>
-The program generates a random password using: 
+The program generates a random password using:  
 Letters  
 Numbers  
 Symbols  
