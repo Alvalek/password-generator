@@ -28,29 +28,20 @@ def generate_password():
         password = ''.join(random.choice(characters) for _ in range(length))
         result_var.set(password)
 
+        strength, value = check_strength(password, length)
+
+        strength_var.set(f"Strength: {strength}")
+        strength_bar['value'] = value
+
+        if strength == "Weak":
+            strength_label.config(fg="red")
+        elif strength == "Medium":
+            strength_label.config(fg="orange")
+        else:
+            strength_label.config(fg="green")
+
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number!")
-    strength = check_strength(password, length)
-    strength_var.set(f"Strength: {strength}")
-
-    if strength == "Weak":
-        strength_label.config(fg="red")
-    elif strength == "Medium":
-        strength_label.config(fg="orange")
-    else:
-        strength_label.config(fg="green")
-        
-    if strength == "Weak":
-        strength_label.config(fg="red")
-    elif strength == "Medium":
-        strength_label.config(fg="orange")
-    else:
-        strength_label.config(fg="green")
-        
-    strength, value = check_strength(password, length)
-    
-    strength_var.set(f"Strength: {strength}")
-    strength_bar['value'] = value
 
 def copy_to_clipboard():
     password = result_var.get()
