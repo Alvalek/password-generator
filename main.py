@@ -8,7 +8,7 @@ include_symbols = tk.BooleanVar(value=True)
 
 def generate_password():
     if not include_numbers.get() and not include_symbols.get():
-    messagebox.showerror("Error", "Select at least one option (numbers or symbols)!")
+        messagebox.showerror("Error", "Select at least one option (numbers or symbols)!")
     return
     try:
         length = int(length_entry.get())
