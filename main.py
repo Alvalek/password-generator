@@ -3,10 +3,20 @@ import string
 import tkinter as tk
 from tkinter import messagebox
 
+include_numbers = tk.BooleanVar(value=True)
+include_symbols = tk.BooleanVar(value=True)
+
 def generate_password():
+    if not include_numbers.get() and not include_symbols.get():
+    messagebox.showerror("Error", "Select at least one option (numbers or symbols)!")
+    return
     try:
         length = int(length_entry.get())
-        characters = string.ascii_letters + string.digits + string.punctuation
+        characters = string.ascii_letters
+            if include_numbers.get():
+                characters += string.digits
+            if include_symbols.get():
+                characters += string.punctuation
         password = ''.join(random.choice(characters) for _ in range(length))
         result_var.set(password)
     except ValueError:
@@ -52,6 +62,12 @@ length_entry.insert(0, placeholder_text)
 
 length_entry.bind("<FocusIn>", on_entry_click)
 length_entry.bind("<FocusOut>", on_focus_out)
+
+numbers_checkbox = tk.Checkbutton(window, text="Include Numbers", variable=include_numbers)
+numbers_checkbox.pack()
+
+symbols_checkbox = tk.Checkbutton(window, text="Include Symbols", variable=include_symbols)
+symbols_checkbox.pack()
 
 # Generate button
 generate_button = tk.Button(window, text="Generate Password", command=generate_password)
