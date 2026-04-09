@@ -7,23 +7,30 @@ include_numbers = tk.BooleanVar(value=True)
 include_symbols = tk.BooleanVar(value=True)
 
 def generate_password():
-    if not include_numbers.get() and not include_symbols.get():
-        messagebox.showerror("Error", "Select at least one option (numbers or symbols)!")
-    return
-    try:
-        length = int(length_entry.get())
-        characters = string.ascii_letters
-            if include_numbers.get():
-                characters += string.digits
-            if include_symbols.get():
-                characters += string.punctuation
-        password = ''.join(random.choice(characters) for _ in range(length))
-        result_var.set(password)
-    except ValueError:
-        messagebox.showerror("Error", "Please enter a valid number!")
     if length_entry.get() == placeholder_text:
         messagebox.showerror("Error", "Please enter a valid number!")
-    return
+        return
+
+    if not include_numbers.get() and not include_symbols.get():
+        messagebox.showerror("Error", "Select at least one option (numbers or symbols)!")
+        return
+
+    try:
+        length = int(length_entry.get())
+
+        characters = string.ascii_letters
+
+        if include_numbers.get():
+            characters += string.digits
+
+        if include_symbols.get():
+            characters += string.punctuation
+
+        password = ''.join(random.choice(characters) for _ in range(length))
+        result_var.set(password)
+
+    except ValueError:
+        messagebox.showerror("Error", "Please enter a valid number!")
 
 def copy_to_clipboard():
     password = result_var.get()
