@@ -60,9 +60,7 @@ def copy_to_clipboard():
         messagebox.showinfo("Copied", "Password copied to clipboard!")
     else:
         messagebox.showwarning("Warning", "No password to copy!")
-
-strength_bar = ttk.Progressbar(window, length=250, mode='determinate')
-strength_bar.pack(pady=5)
+        
 def check_strength(password, length):
     score = 0
 
@@ -87,7 +85,8 @@ window = tk.Tk()
 window.title("Password Generator")
 window.geometry("420x420")
 window.minsize(420, 380)
-
+strength_bar = ttk.Progressbar(window, length=250, mode='determinate')
+strength_bar.pack(pady=5)
 
 include_numbers = tk.BooleanVar(value=True)
 include_symbols = tk.BooleanVar(value=True)
