@@ -3,8 +3,6 @@ import string
 import tkinter as tk
 from tkinter import messagebox
 
-include_numbers = tk.BooleanVar(value=True)
-include_symbols = tk.BooleanVar(value=True)
 
 def generate_password():
     if length_entry.get() == placeholder_text:
@@ -45,6 +43,9 @@ def copy_to_clipboard():
 window = tk.Tk()
 window.title("Password Generator")
 window.geometry("320x220")
+
+include_numbers = tk.BooleanVar(value=True)
+include_symbols = tk.BooleanVar(value=True)
 
 # Title
 title_label = tk.Label(window, text="Password Generator", font=("Arial", 14))
