@@ -70,9 +70,8 @@ def check_strength(password, length):
 # Main window
 window = tk.Tk()
 window.title("Password Generator")
-window.geometry("400x350")
+window.geometry("420x380")
 window.minsize(400, 350)
-button.pack(pady=10)
 
 result_label = tk.Label(window, textvariable=result_var, wraplength=350)
 
