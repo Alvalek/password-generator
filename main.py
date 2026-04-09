@@ -72,7 +72,7 @@ window = tk.Tk()
 window.title("Password Generator")
 window.geometry("400x350")
 window.minsize(400, 350)
-botao.pack(pady=10)
+button.pack(pady=10)
 
 result_label = tk.Label(window, textvariable=result_var, wraplength=350)
 
