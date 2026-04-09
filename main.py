@@ -73,7 +73,6 @@ window.title("Password Generator")
 window.geometry("420x380")
 window.minsize(400, 350)
 
-result_label = tk.Label(window, textvariable=result_var, wraplength=350)
 
 include_numbers = tk.BooleanVar(value=True)
 include_symbols = tk.BooleanVar(value=True)
