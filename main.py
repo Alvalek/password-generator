@@ -45,12 +45,17 @@ def generate_password():
 
 def copy_to_clipboard():
     password = result_var.get()
+
     if password:
         window.clipboard_clear()
         window.clipboard_append(password)
-        messagebox.showinfo("Copied", "Password copied to clipboard!")
+
+        copy_status_var.set("Copied!")
+
+        window.after(2000, lambda: copy_status_var.set(""))
     else:
-        messagebox.showwarning("Warning", "No password to copy!")
+        copy_status_var.set("Nothing to copy!")
+        window.after(2000, lambda: copy_status_var.set(""))
         
 def check_strength(password, length):
     score = 0
@@ -129,6 +134,10 @@ result_label.pack(pady=10)
 # Copy button
 copy_button = tk.Button(window, text="Copy to Clipboard", command=copy_to_clipboard)
 copy_button.pack(pady=5)
+copy_status_var = tk.StringVar()
+
+copy_status_label = tk.Label(window, textvariable=copy_status_var, fg="green")
+copy_status_label.pack(pady=5)
 
 # Run app
 window.mainloop()
