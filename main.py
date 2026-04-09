@@ -32,6 +32,13 @@ def generate_password():
     strength = check_strength(password, length)
     strength_var.set(f"Strength: {strength}")
 
+    if strength == "Weak":
+        strength_label.config(fg="red")
+    elif strength == "Medium":
+        strength_label.config(fg="orange")
+    else:
+        strength_label.config(fg="green")
+
 def copy_to_clipboard():
     password = result_var.get()
     if password:
@@ -60,17 +67,14 @@ def check_strength(password, length):
     else:
         return "Strong"
 
-    if strength == "Weak":
-        strength_label.config(fg="red")
-    elif strength == "Medium":
-        strength_label.config(fg="orange")
-    else:
-        strength_label.config(fg="green")
-
 # Main window
 window = tk.Tk()
 window.title("Password Generator")
-window.geometry("320x220")
+window.geometry("400x350")
+window.minsize(400, 350)
+botao.pack(pady=10)
+
+result_label = tk.Label(window, textvariable=result_var, wraplength=350)
 
 include_numbers = tk.BooleanVar(value=True)
 include_symbols = tk.BooleanVar(value=True)
