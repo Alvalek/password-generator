@@ -29,6 +29,8 @@ def generate_password():
 
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number!")
+    strength = check_strength(password, length)
+    strength_var.set(f"Strength: {strength}")
 
 def copy_to_clipboard():
     password = result_var.get()
@@ -39,6 +41,32 @@ def copy_to_clipboard():
     else:
         messagebox.showwarning("Warning", "No password to copy!")
 
+def check_strength(password, length):
+    score = 0
+
+    if length >= 8:
+        score += 1
+    if length >= 12:
+        score += 1
+    if any(char.isdigit() for char in password):
+        score += 1
+    if any(char in string.punctuation for char in password):
+        score += 1
+
+    if score <= 1:
+        return "Weak"
+    elif score <= 3:
+        return "Medium"
+    else:
+        return "Strong"
+
+    if strength == "Weak":
+        strength_label.config(fg="red")
+    elif strength == "Medium":
+        strength_label.config(fg="orange")
+    else:
+        strength_label.config(fg="green")
+
 # Main window
 window = tk.Tk()
 window.title("Password Generator")
@@ -46,6 +74,11 @@ window.geometry("320x220")
 
 include_numbers = tk.BooleanVar(value=True)
 include_symbols = tk.BooleanVar(value=True)
+
+strength_var = tk.StringVar()
+
+strength_label = tk.Label(window, textvariable=strength_var)
+strength_label.pack()
 
 # Title
 title_label = tk.Label(window, text="Password Generator", font=("Arial", 14))
