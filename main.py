@@ -93,9 +93,7 @@ strength_label = tk.Label(window, textvariable=strength_var)
 strength_label.pack()
 
 # Title
-from PIL import Image, ImageDraw, ImageFont
-
-title_label = tk.Label(window, text="KeyScribe", font=ImageFont.truetype("Rompax.ttf", 14))
+title_label = tk.Label(window, text="KeyScribe", font=("times-new-roman", 14))
 title_label.pack(pady=10)
 
 placeholder_text = "Enter password length..."
