@@ -93,7 +93,7 @@ strength_label = tk.Label(window, textvariable=strength_var)
 strength_label.pack()
 
 # Title
-title_label = tk.Label(window, text="KeyScribe", font=("times-new-roman", 14))
+title_label = tk.Label(window, text="KeyScribe", font=("Helvetica", 14, "bold"))
 title_label.pack(pady=10)
 
 placeholder_text = "Enter password length..."
@@ -140,4 +140,5 @@ copy_status_label = tk.Label(window, textvariable=copy_status_var, fg="green")
 copy_status_label.pack(pady=5)
 
 # Run app
+window.bind("<Return>", lambda event: generate_password())
 window.mainloop()
