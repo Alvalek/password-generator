@@ -26,7 +26,8 @@ def generate_password():
             characters += string.punctuation
 
         password = ''.join(random.choice(characters) for _ in range(length))
-        result_var.set(password)
+        result_text.delete("1.0", tk.END)
+        result_text.insert(tk.END, password)
 
         strength, value = check_strength(password, length)
 
@@ -44,7 +45,7 @@ def generate_password():
         messagebox.showerror("Error", "Please enter a valid number!")
 
 def copy_to_clipboard():
-    password = result_var.get()
+    password = result_text.get("1.0", tk.END).strip()
 
     if password:
         window.clipboard_clear()
@@ -93,7 +94,7 @@ strength_label = tk.Label(window, textvariable=strength_var)
 strength_label.pack()
 
 # Title
-title_label = tk.Label(window, text="KeyScribe", font=("Helvetica", 14, "bold"))
+title_label = tk.Label(window, text="KeyScribe", font=("Times", 14, "bold"))
 title_label.pack(pady=10)
 
 placeholder_text = "Enter password length..."
@@ -126,10 +127,20 @@ symbols_checkbox.pack()
 generate_button = tk.Button(window, text="Generate Password", command=generate_password)
 generate_button.pack(pady=10)
 
-# Result display
+# Result display (update)
 result_var = tk.StringVar()
-result_label = tk.Label(window, textvariable=result_var, wraplength=280)
-result_label.pack(pady=10)
+result_frame = tk.Frame(window)
+result_frame.pack(pady=10)
+
+# Text-box
+result_text = tk.Text(result_frame, height=3, width=40, wrap="word")
+result_text.pack(side="left")
+
+# Scrollbar
+scrollbar = tk.Scrollbar(result_frame, command=result_text.yview)
+scrollbar.pack(side="right", fill="y")
+
+result_text.config(yscrollcommand=scrollbar.set)
 
 # Copy button
 copy_button = tk.Button(window, text="Copy to Clipboard", command=copy_to_clipboard)
