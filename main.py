@@ -79,7 +79,7 @@ def check_strength(password, length):
 
 # Main window
 window = tk.Tk()
-window.title("Password Generator")
+window.title("KeyScribe")
 window.geometry("420x420")
 window.minsize(420, 380)
 strength_bar = ttk.Progressbar(window, length=250, mode='determinate')
